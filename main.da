@@ -95,15 +95,27 @@ class Node(process):
         """
         pass
 
-    def nodeExit(X):
+    def nodeDelete(X):
         """
         Update Routing Table of every target node when node X exits
         """
         pass
 
-    def nodeStatus(X):
+    def repairLeafSet(X):
         """
-        Set the status of node X. Used for setting node active status
+        Repair the leaf set for node X to account for its deletion
+        """
+        pass
+
+    def repairNeighborSet(X):
+        """
+        Repair the neighborhood set for node X to account for its deletion
+        """
+        pass
+
+    def repairRoutingTable(X):
+        """
+        Repair the routing table entry for finding replacement node for node X
         """
         pass
 
