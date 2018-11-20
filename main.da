@@ -2,12 +2,71 @@ class Node(process):
     def setup(id:int):
         self.routingTable = [[None for x in xrange(2**b)] for x in xrange(32)]
         self.leafSet = []
-        self.neighbourhoodSet = []
+        self.neighborhoodSet = []
         self.isNodeActive = True
         self.ipAddress = getRandomIPAddress()
         self.nodeKey = getNodeKey(self.ipAddress)
         self.coordinates = getCoordinates()
         self.routePath = []
+        pass
+
+    """
+    Map the nodes in a 2D grid to determine the relative distance between
+    the nodes.
+    """
+    def getCoordinates():
+        pass
+
+    """
+    Get random IP Address for a particular node.
+    """
+    def getRandomIPAddress():
+        pass
+
+    """
+    Get a 128-bit identifier by hashing the ip address.
+    """
+    def getNodeKey(ipAddress):
+        pass
+
+    """
+    Given a node X, determine the closest node based on the proximity metric.
+    """
+    def getClosestNode(X):
+        pass
+
+    """
+    Identity map the routing table.
+    """
+    def addToRoutingTable(X):
+        pass
+
+    """
+    Update the routing table of the node X based on the closest nodes
+    encountered present in the routePath.
+    """
+    def updateRoutingTable(X, routePath):
+        pass
+
+    """
+    Sends a join message on node arrival to find the nearest existing node Z
+    whose id is numerically closest to X.
+    Returns:
+    The set of nodes encountered on the path from A to Z.
+    """
+    def sendJoinMessage(X):
+        pass
+
+    """
+    Initialize X's neighborhood set with A's neighborhood set.
+    """
+    def updateNeighbourSet(A, X):
+        pass
+
+    """
+    Initialize X's leaf set with Z's leaf set.
+    """
+    def updateLeafSet(Z, X):
         pass
 
 def main():
