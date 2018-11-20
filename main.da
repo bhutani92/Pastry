@@ -120,9 +120,6 @@ class Node(process):
         pass
 
     def run():
-        """
-        Starting point for the program
-        """
         output('Terminating')
         pass
 
