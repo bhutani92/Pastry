@@ -17,59 +17,59 @@ class Node(process):
     def getCoordinates():
         """
         Map the nodes in a 2D grid to determine the relative distance between
-        the nodes.
+        the nodes
         """
         pass
 
     def getRandomIPAddress():
         """
-        Get random IP Address for a particular node.
+        Get random IP Address for a particular node
         """
         pass
 
     def getNodeKey(ipAddress):
         """
-        Get a 128-bit identifier by hashing the ip address.
+        Get a 128-bit identifier by hashing the ip address
         """
         pass
 
     def getClosestNode(X):
         """
-        Given a node X, determine the closest node based on the proximity metric.
+        Given a node X, determine the closest node based on the proximity metric
         """
         pass
 
     def addToRoutingTable(X):
         """
-        Identity map the routing table.
+        Identity map the routing table
         """
         pass
 
     def updateRoutingTable(X, routePath):
         """
         Update the routing table of the node X based on the closest nodes
-        encountered present in the routePath.
+        encountered present in the routePath
         """
         pass
 
     def sendJoinMessage(X):
         """
         Sends a join message on node arrival to find the nearest existing node Z
-        whose id is numerically closest to X.
+        whose id is numerically closest to X
         Returns:
-        The set of nodes encountered on the path from A to Z.
+        The set of nodes encountered on the path from A to Z
         """
         pass
 
     def updateNeighbourSet(A, X):
         """
-        Initialize X's neighborhood set with A's neighborhood set.
+        Initialize X's neighborhood set with A's neighborhood set
         """
         pass
 
     def updateLeafSet(Z, X):
         """
-        Initialize X's leaf set with Z's leaf set.
+        Initialize X's leaf set with Z's leaf set
         """
         pass
 
@@ -88,9 +88,16 @@ class Node(process):
         route(key)
         pass
 
+    def shl(A, B):
+        """
+        Returns:
+        The length of the prefix shared among A and B
+        """
+        pass
+
     def run():
         """
-        Starting point for the program.
+        Starting point for the program
         """
         output('Terminating')
         pass
