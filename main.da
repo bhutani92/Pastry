@@ -1,4 +1,6 @@
+from urllib3.connectionpool import xrange 
 class Node(process):
+    b=4
     def setup(id:int):
         self.routingTable = [[None for x in xrange(2**b)] for x in xrange(32)]
         self.leafSet = []
@@ -67,6 +69,25 @@ class Node(process):
     Initialize X's leaf set with Z's leaf set.
     """
     def updateLeafSet(Z, X):
+        pass
+
+    """
+    Routing a key to next node/ forward to next closest node
+    """
+    def route(id):
+        print('inside of route algorithm')
+	  #implement routing algorithm here. Will decide node/list of nodes to forward the key (send('forward',key))
+      #if node current node itself is nearest node, do required steps
+   
+    """
+    Received forward key request
+    """    
+    def receive(msg= ('forward',key)):
+        route(key)
+
+
+
+
         pass
 
 def main():
