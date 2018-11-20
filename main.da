@@ -4,7 +4,10 @@ class Node(process):
         self.leafSet = []
         self.neighbourhoodSet = []
         self.isNodeActive = True
-        self.ip = getRandomIPAddress()
+        self.ipAddress = getRandomIPAddress()
+        self.nodeKey = getNodeKey(self.ipAddress)
+        self.coordinates = getCoordinates()
+        self.routePath = []
         pass
 
 def main():
