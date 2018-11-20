@@ -59,12 +59,12 @@ class Node(process):
         Returns:
         The set of nodes encountered on the path from A to Z
         """
-        A=getClosestNode(X)
-        send(('forward','join',X),to= A)
+        A = getClosestNode(X)
+        send(("forward", "join", X), to= A)
         
-        #wait untill all states are received. Send own state to other nodes if required
+        # Wait untill all states are received. Send own state to other nodes if required
         updateNeighbourSet(A, X)
- 
+        pass
 
 
     def updateNeighbourSet(A, X):
@@ -79,36 +79,40 @@ class Node(process):
         """
         pass
 
-   def getHopsCount(A, X):
-       """
-       This function is used to measure routing performance
-       This function returns minimum no. of hops between any two node A and X.
-       """
+    def getHopsCount(A, X):
+        """
+        This function is used to measure routing performance and returns the
+        minimum number of hops between any two node A and X
+        """
+        pass
 
     def route(msg,keyid):
         """
-        Routing a key to next node/forward to next closest node
+        Causes Pastry to route the given message to the node with nodeId
+        numerically closest to the key, among all live Pastry nodes
         """
-        print('inside of route algorithm')
-        #implement routing algorithm here. Will decide node/list of nodes to forward the key (send('forward',msg,keyid))
-        #if node current node itself is nearest node, do required steps
+        # Implement routing algorithm here. Will decide node/list of nodes to
+        # forward the key (send('forward', msg, keyid))
+        # If node current node itself is nearest node, do required steps
+        pass
     
     def sendState(X):
         """
         Sending state to node X
         """
-        send((routingTable,leafSet,neighborhoodSet),to= X)
-
-    def receive(msg= ('forward',message,keyid)):
-        """
-        Received forward request
-        """
-
-        if(message=="join"):
-            sendState(keyid)   
-        route(message,keyid)
+        send((routingTable, leafSet, neighborhoodSet), to= X)
         pass
 
+    def receive(msg= ('forward', message, keyid)):
+        """
+        Callback function for handling forward messages
+        """
+
+        if (message == "join"):
+            sendState(keyid)   
+
+        route(message,keyid)
+        pass
 
     def shl(A, B):
         """
@@ -121,11 +125,14 @@ class Node(process):
         """
         Update Routing Table of every target node when node X exits
         """
-	pass
+        pass
 
 
-    def receive(msg= (routingTable,leafSet,neighborhoodSet)):
-        updateRoutingTable(routingTable,leafSet,neighborhoodSet)
+    def receive(msg= (routingTable, leafSet, neighborhoodSet)):
+        """
+        Callback function for receiving state changes from node X
+        """
+        updateRoutingTable(routingTable, leafSet, neighborhoodSet)
         pass
 
     def repairLeafSet(X):
