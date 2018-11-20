@@ -1,7 +1,9 @@
+import sys
 from urllib3.connectionpool import xrange 
+
 class Node(process):
-    b=4
     def setup(id:int):
+        self.b = 4
         self.routingTable = [[None for x in xrange(2**b)] for x in xrange(32)]
         self.leafSet = []
         self.neighborhoodSet = []
@@ -12,83 +14,91 @@ class Node(process):
         self.routePath = []
         pass
 
-    """
-    Map the nodes in a 2D grid to determine the relative distance between
-    the nodes.
-    """
     def getCoordinates():
+        """
+        Map the nodes in a 2D grid to determine the relative distance between
+        the nodes.
+        """
         pass
 
-    """
-    Get random IP Address for a particular node.
-    """
     def getRandomIPAddress():
+        """
+        Get random IP Address for a particular node.
+        """
         pass
 
-    """
-    Get a 128-bit identifier by hashing the ip address.
-    """
     def getNodeKey(ipAddress):
+        """
+        Get a 128-bit identifier by hashing the ip address.
+        """
         pass
 
-    """
-    Given a node X, determine the closest node based on the proximity metric.
-    """
     def getClosestNode(X):
+        """
+        Given a node X, determine the closest node based on the proximity metric.
+        """
         pass
 
-    """
-    Identity map the routing table.
-    """
     def addToRoutingTable(X):
+        """
+        Identity map the routing table.
+        """
         pass
 
-    """
-    Update the routing table of the node X based on the closest nodes
-    encountered present in the routePath.
-    """
     def updateRoutingTable(X, routePath):
+        """
+        Update the routing table of the node X based on the closest nodes
+        encountered present in the routePath.
+        """
         pass
 
-    """
-    Sends a join message on node arrival to find the nearest existing node Z
-    whose id is numerically closest to X.
-    Returns:
-    The set of nodes encountered on the path from A to Z.
-    """
     def sendJoinMessage(X):
+        """
+        Sends a join message on node arrival to find the nearest existing node Z
+        whose id is numerically closest to X.
+        Returns:
+        The set of nodes encountered on the path from A to Z.
+        """
         pass
 
-    """
-    Initialize X's neighborhood set with A's neighborhood set.
-    """
     def updateNeighbourSet(A, X):
+        """
+        Initialize X's neighborhood set with A's neighborhood set.
+        """
         pass
 
-    """
-    Initialize X's leaf set with Z's leaf set.
-    """
     def updateLeafSet(Z, X):
+        """
+        Initialize X's leaf set with Z's leaf set.
+        """
         pass
 
-    """
-    Routing a key to next node/ forward to next closest node
-    """
     def route(id):
+        """
+        Routing a key to next node/forward to next closest node
+        """
         print('inside of route algorithm')
-	  #implement routing algorithm here. Will decide node/list of nodes to forward the key (send('forward',key))
-      #if node current node itself is nearest node, do required steps
+        #implement routing algorithm here. Will decide node/list of nodes to forward the key (send('forward',key))
+        #if node current node itself is nearest node, do required steps
    
-    """
-    Received forward key request
-    """    
     def receive(msg= ('forward',key)):
+        """
+        Received forward key request
+        """    
         route(key)
+        pass
 
-
-
-
+    def run():
+        """
+        Starting point for the program.
+        """
+        output('Terminating')
         pass
 
 def main():
+    nprocs = 1
+    ps = new(Node, num=nprocs)
+    for p in ps:
+        setup(p, (1, ))
+    start(ps)
     pass
