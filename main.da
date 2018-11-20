@@ -45,7 +45,7 @@ class Node(process):
         """
         pass
 
-    def updateRoutingTable(X, routePath):
+    def updateRoutingTable(routingTable,leafSet,neighborhoodSet):
         """
         Update the routing table of the node X based on the closest nodes
         encountered present in the routePath
@@ -59,7 +59,13 @@ class Node(process):
         Returns:
         The set of nodes encountered on the path from A to Z
         """
-        pass
+        A=getClosestNode(X)
+        send(('forward','join',X),to= A)
+        
+        #wait untill all states are received. Send own state to other nodes if required
+        updateNeighbourSet(A, X)
+ 
+
 
     def updateNeighbourSet(A, X):
         """
@@ -73,20 +79,36 @@ class Node(process):
         """
         pass
 
-    def route(id):
+   def getHopsCount(A, X):
+       """
+       This function is used to measure routing performance
+       This function returns minimum no. of hops between any two node A and X.
+       """
+
+    def route(msg,keyid):
         """
         Routing a key to next node/forward to next closest node
         """
         print('inside of route algorithm')
-        #implement routing algorithm here. Will decide node/list of nodes to forward the key (send('forward',key))
+        #implement routing algorithm here. Will decide node/list of nodes to forward the key (send('forward',msg,keyid))
         #if node current node itself is nearest node, do required steps
-   
-    def receive(msg= ('forward',key)):
+    
+    def sendState(X):
         """
-        Received forward key request
-        """    
-        route(key)
+        Sending state to node X
+        """
+        send((routingTable,leafSet,neighborhoodSet),to= X)
+
+    def receive(msg= ('forward',message,keyid)):
+        """
+        Received forward request
+        """
+
+        if(message=="join"):
+            sendState(keyid)   
+        route(message,keyid)
         pass
+
 
     def shl(A, B):
         """
@@ -99,6 +121,11 @@ class Node(process):
         """
         Update Routing Table of every target node when node X exits
         """
+	pass
+
+
+    def receive(msg= (routingTable,leafSet,neighborhoodSet)):
+        updateRoutingTable(routingTable,leafSet,neighborhoodSet)
         pass
 
     def repairLeafSet(X):
