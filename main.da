@@ -95,6 +95,18 @@ class Node(process):
         """
         pass
 
+    def nodeExit(X):
+        """
+        Update Routing Table of every target node when node X exits
+        """
+        pass
+
+    def nodeStatus(X):
+        """
+        Set the status of node X. Used for setting node active status
+        """
+        pass
+
     def run():
         """
         Starting point for the program
