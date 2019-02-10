@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>main</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/bhutani92/Desktop/AsynchronousSystems/pastry-distalgo/main.py">/home/bhutani92/Desktop/AsynchronousSystems/pastry-distalgo/main.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;generated&nbsp;by&nbsp;1.0.12&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="da.html">da</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pastry.html">pastry</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="da.sim.html#DistProcess">da.sim.DistProcess</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="main.html#ClientLookup">ClientLookup</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="da.sim.html#NodeProcess">da.sim.NodeProcess</a>(<a href="da.sim.html#DistProcess">da.sim.DistProcess</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="main.html#Node_">Node_</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ClientLookup">class <strong>ClientLookup</strong></a>(<a href="da.sim.html#DistProcess">da.sim.DistProcess</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;base&nbsp;class&nbsp;for&nbsp;DistAlgo&nbsp;processes.<br>
+&nbsp;<br>
+Each&nbsp;instance&nbsp;of&nbsp;this&nbsp;class&nbsp;enbodies&nbsp;the&nbsp;runtime&nbsp;state&nbsp;and&nbsp;activities&nbsp;of&nbsp;a<br>
+DistAlgo&nbsp;process&nbsp;in&nbsp;a&nbsp;distributed&nbsp;system.&nbsp;Each&nbsp;process&nbsp;is&nbsp;uniquely<br>
+identified&nbsp;by&nbsp;a&nbsp;`ProcessId`&nbsp;object.&nbsp;Messages&nbsp;exchanged&nbsp;between&nbsp;DistAlgo<br>
+processes&nbsp;can&nbsp;be&nbsp;any&nbsp;picklable&nbsp;Python&nbsp;object.<br>
+&nbsp;<br>
+DistAlgo&nbsp;processes&nbsp;can&nbsp;spawn&nbsp;more&nbsp;processes&nbsp;by&nbsp;calling&nbsp;`new`.&nbsp;The&nbsp;process<br>
+that&nbsp;called&nbsp;`new`&nbsp;is&nbsp;known&nbsp;as&nbsp;the&nbsp;parent&nbsp;process&nbsp;of&nbsp;the&nbsp;newly&nbsp;spawned<br>
+processes.&nbsp;Any&nbsp;<a href="da.sim.html#DistProcess">DistProcess</a>&nbsp;can&nbsp;send&nbsp;messages&nbsp;to&nbsp;any&nbsp;other&nbsp;<a href="da.sim.html#DistProcess">DistProcess</a>,&nbsp;given<br>
+that&nbsp;it&nbsp;knows&nbsp;the&nbsp;`ProcessId`&nbsp;of&nbsp;the&nbsp;target&nbsp;process.&nbsp;However,&nbsp;only&nbsp;the<br>
+parent&nbsp;process&nbsp;can&nbsp;`end`&nbsp;a&nbsp;child&nbsp;process.&nbsp;The&nbsp;terminal&nbsp;is&nbsp;shared&nbsp;between&nbsp;all<br>
+processes&nbsp;spawned&nbsp;from&nbsp;that&nbsp;terminal,&nbsp;which&nbsp;includes&nbsp;the&nbsp;stdout,&nbsp;stdin,&nbsp;and<br>
+stderr&nbsp;streams.<br>
+&nbsp;<br>
+Concrete&nbsp;subclasses&nbsp;of&nbsp;`<a href="da.sim.html#DistProcess">DistProcess</a>`&nbsp;must&nbsp;define&nbsp;the&nbsp;methods:<br>
+&nbsp;<br>
+-&nbsp;`setup`:&nbsp;A&nbsp;function&nbsp;that&nbsp;initializes&nbsp;the&nbsp;process-local&nbsp;variables.<br>
+&nbsp;<br>
+-&nbsp;`run`:&nbsp;The&nbsp;entry&nbsp;point&nbsp;of&nbsp;the&nbsp;process.&nbsp;This&nbsp;function&nbsp;defines&nbsp;the<br>
+&nbsp;&nbsp;activities&nbsp;of&nbsp;the&nbsp;process.<br>
+&nbsp;<br>
+Users&nbsp;should&nbsp;not&nbsp;instantiate&nbsp;this&nbsp;class&nbsp;directly,&nbsp;process&nbsp;instances&nbsp;should<br>
+be&nbsp;created&nbsp;by&nbsp;calling&nbsp;`new`.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="main.html#ClientLookup">ClientLookup</a></dd>
+<dd><a href="da.sim.html#DistProcess">da.sim.DistProcess</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ClientLookup-__init__"><strong>__init__</strong></a>(self, procimpl, props)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-getRelativeDistance"><strong>getRelativeDistance</strong></a>(self, coord1, coord2)</dt></dl>
+
+<dl><dt><a name="ClientLookup-run"><strong>run</strong></a>(self)</dt><dd><tt>Entry&nbsp;point&nbsp;for&nbsp;the&nbsp;DistAlgo&nbsp;process.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;starting&nbsp;point&nbsp;of&nbsp;execution&nbsp;for&nbsp;user&nbsp;code.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-setup"><strong>setup</strong></a>(self, boot, N, lTrials, tl, tps, **rest_1112)</dt><dd><tt>Initialization&nbsp;routine&nbsp;for&nbsp;the&nbsp;DistAlgo&nbsp;process.<br>
+&nbsp;<br>
+Should&nbsp;be&nbsp;overridden&nbsp;by&nbsp;child&nbsp;classes&nbsp;to&nbsp;initialize&nbsp;process&nbsp;states.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><a name="ClientLookup-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-__str__"><strong>__str__</strong></a> = __repr__(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-debug"><strong>debug</strong></a>(self, *message, sep=' ')</dt><dd><tt>Prints&nbsp;debugging&nbsp;output&nbsp;to&nbsp;the&nbsp;process&nbsp;log.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;`output`&nbsp;except&nbsp;the&nbsp;message&nbsp;is&nbsp;logged&nbsp;at&nbsp;the<br>
+'USRDBG'&nbsp;level.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-end"><strong>end</strong></a>(self, target, exit_code=1)</dt><dd><tt>Terminate&nbsp;the&nbsp;child&nbsp;processes&nbsp;specified&nbsp;by&nbsp;`target`.<br>
+&nbsp;<br>
+`target`&nbsp;can&nbsp;be&nbsp;a&nbsp;process&nbsp;id&nbsp;or&nbsp;a&nbsp;set&nbsp;of&nbsp;process&nbsp;ids,&nbsp;all&nbsp;of&nbsp;which&nbsp;must<br>
+be&nbsp;a&nbsp;child&nbsp;process&nbsp;of&nbsp;this&nbsp;process.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-error"><strong>error</strong></a>(self, *message, sep=' ')</dt><dd><tt>Prints&nbsp;error&nbsp;message&nbsp;to&nbsp;the&nbsp;process&nbsp;log.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;`output`&nbsp;except&nbsp;the&nbsp;message&nbsp;is&nbsp;logged&nbsp;at&nbsp;the<br>
+'USRERR'&nbsp;level.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-exit"><strong>exit</strong></a>(self, code=0)</dt><dd><tt>Terminates&nbsp;the&nbsp;current&nbsp;process.<br>
+&nbsp;<br>
+`code`&nbsp;specifies&nbsp;the&nbsp;exit&nbsp;code.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-hanged"><strong>hanged</strong></a>(self)</dt><dd><tt>Hangs&nbsp;the&nbsp;current&nbsp;process.<br>
+&nbsp;<br>
+When&nbsp;a&nbsp;process&nbsp;enters&nbsp;the&nbsp;'hanged'&nbsp;state,&nbsp;its&nbsp;main&nbsp;logic&nbsp;and&nbsp;all&nbsp;message<br>
+handlers&nbsp;will&nbsp;no&nbsp;longer&nbsp;run.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-incr_logical_clock"><strong>incr_logical_clock</strong></a>(self)</dt><dd><tt>Increments&nbsp;the&nbsp;logical&nbsp;clock.<br>
+&nbsp;<br>
+For&nbsp;Lamport's&nbsp;clock,&nbsp;this&nbsp;increases&nbsp;the&nbsp;clock&nbsp;value&nbsp;by&nbsp;1.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-logical_clock"><strong>logical_clock</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;current&nbsp;value&nbsp;of&nbsp;the&nbsp;logical&nbsp;clock.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-nameof"><strong>nameof</strong></a>(self, pid)</dt><dd><tt>Returns&nbsp;the&nbsp;process&nbsp;name&nbsp;of&nbsp;`pid`,&nbsp;if&nbsp;any.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-new"><strong>new</strong></a>(self, pcls, args=None, num=None, at=None, method=None, **props)</dt><dd><tt>Creates&nbsp;new&nbsp;DistAlgo&nbsp;processes.<br>
+&nbsp;<br>
+`pcls`&nbsp;specifies&nbsp;the&nbsp;DistAlgo&nbsp;process&nbsp;class.&nbsp;Optional&nbsp;argument&nbsp;`args`&nbsp;is<br>
+a&nbsp;list&nbsp;of&nbsp;arguments&nbsp;that&nbsp;is&nbsp;used&nbsp;to&nbsp;call&nbsp;the&nbsp;`setup`&nbsp;method&nbsp;of&nbsp;the&nbsp;child<br>
+processes.&nbsp;Optional&nbsp;argument&nbsp;`num`&nbsp;specifies&nbsp;the&nbsp;number&nbsp;of&nbsp;processes&nbsp;to<br>
+create&nbsp;on&nbsp;each&nbsp;node.&nbsp;Optional&nbsp;argument&nbsp;`at`&nbsp;specifies&nbsp;the&nbsp;node&nbsp;or&nbsp;nodes<br>
+on&nbsp;which&nbsp;the&nbsp;new&nbsp;processes&nbsp;are&nbsp;to&nbsp;be&nbsp;created.&nbsp;If&nbsp;`num`&nbsp;is&nbsp;not&nbsp;specified<br>
+then&nbsp;it&nbsp;defaults&nbsp;to&nbsp;one&nbsp;process.&nbsp;If&nbsp;`at`&nbsp;is&nbsp;not&nbsp;specified&nbsp;then&nbsp;it<br>
+defaults&nbsp;to&nbsp;the&nbsp;same&nbsp;node&nbsp;as&nbsp;the&nbsp;current&nbsp;process.&nbsp;Optional&nbsp;argument<br>
+`method`&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;implementation&nbsp;used&nbsp;to&nbsp;run&nbsp;the&nbsp;new<br>
+process(es),&nbsp;and&nbsp;can&nbsp;be&nbsp;one&nbsp;of&nbsp;'process',&nbsp;in&nbsp;which&nbsp;case&nbsp;the&nbsp;new<br>
+processes&nbsp;will&nbsp;be&nbsp;run&nbsp;inside&nbsp;operating&nbsp;system&nbsp;processes,&nbsp;or&nbsp;'thread'&nbsp;in<br>
+which&nbsp;case&nbsp;the&nbsp;processes&nbsp;will&nbsp;be&nbsp;run&nbsp;inside&nbsp;operating&nbsp;system&nbsp;threads.&nbsp;If<br>
+method&nbsp;is&nbsp;not&nbsp;specified&nbsp;then&nbsp;its&nbsp;default&nbsp;value&nbsp;is&nbsp;taken&nbsp;from&nbsp;the<br>
+'--default_proc_impl'&nbsp;command&nbsp;line&nbsp;option.<br>
+&nbsp;<br>
+If&nbsp;neither&nbsp;`num`&nbsp;nor&nbsp;`at`&nbsp;is&nbsp;specified,&nbsp;then&nbsp;`new`&nbsp;will&nbsp;return&nbsp;the<br>
+process&nbsp;id&nbsp;of&nbsp;child&nbsp;process&nbsp;if&nbsp;successful,&nbsp;or&nbsp;None&nbsp;otherwise.&nbsp;If&nbsp;either<br>
+`num`&nbsp;or&nbsp;`at`&nbsp;is&nbsp;specified,&nbsp;then&nbsp;`new`&nbsp;will&nbsp;return&nbsp;a&nbsp;set&nbsp;containing&nbsp;the<br>
+process&nbsp;ids&nbsp;of&nbsp;the&nbsp;processes&nbsp;that&nbsp;was&nbsp;successfully&nbsp;created.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-nodeof"><strong>nodeof</strong></a>(self, pid)</dt><dd><tt>Returns&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;node&nbsp;process&nbsp;that's&nbsp;running&nbsp;`pid`.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-output"><strong>output</strong></a>(self, *message, sep=' ', level=21)</dt><dd><tt>Prints&nbsp;arguments&nbsp;to&nbsp;the&nbsp;process&nbsp;log.<br>
+&nbsp;<br>
+Optional&nbsp;argument&nbsp;'level'&nbsp;is&nbsp;a&nbsp;positive&nbsp;integer&nbsp;that&nbsp;specifies&nbsp;the<br>
+logging&nbsp;level&nbsp;of&nbsp;the&nbsp;message,&nbsp;defaults&nbsp;to&nbsp;'logging.INFO'(20).&nbsp;Refer&nbsp;to<br>
+[https://docs.python.org/3/library/logging.html#levels]&nbsp;for&nbsp;a&nbsp;list&nbsp;of<br>
+predefined&nbsp;logging&nbsp;levels.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;level&nbsp;of&nbsp;the&nbsp;message&nbsp;is&nbsp;equal&nbsp;to&nbsp;or&nbsp;higher&nbsp;than&nbsp;the<br>
+configured&nbsp;level&nbsp;of&nbsp;a&nbsp;log&nbsp;handler,&nbsp;the&nbsp;message&nbsp;is&nbsp;logged&nbsp;to&nbsp;that<br>
+handler;&nbsp;otherwise,&nbsp;it&nbsp;is&nbsp;ignored.&nbsp;DistAlgo&nbsp;processes&nbsp;are<br>
+automatically&nbsp;configured&nbsp;with&nbsp;two&nbsp;log&nbsp;handlers:,&nbsp;one&nbsp;logs&nbsp;to&nbsp;the<br>
+console,&nbsp;the&nbsp;other&nbsp;to&nbsp;a&nbsp;log&nbsp;file;&nbsp;the&nbsp;handlers'&nbsp;logging&nbsp;levels&nbsp;are<br>
+controlled&nbsp;by&nbsp;command&nbsp;line&nbsp;parameters.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-parent"><strong>parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;parent&nbsp;process&nbsp;id.<br>
+&nbsp;<br>
+The&nbsp;parent&nbsp;process&nbsp;is&nbsp;the&nbsp;process&nbsp;that&nbsp;called&nbsp;`new`&nbsp;to&nbsp;create&nbsp;this<br>
+process.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-resolve"><strong>resolve</strong></a>(self, name)</dt><dd><tt>Returns&nbsp;the&nbsp;process&nbsp;id&nbsp;associated&nbsp;with&nbsp;`name`.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-send"><strong>send</strong></a>(self, message, to, channel=None, **rest)</dt><dd><tt>Send&nbsp;a&nbsp;DistAlgo&nbsp;message.<br>
+&nbsp;<br>
+`message`&nbsp;can&nbsp;be&nbsp;any&nbsp;pickle-able&nbsp;Python&nbsp;object.&nbsp;`to`&nbsp;can&nbsp;be&nbsp;a&nbsp;process&nbsp;id<br>
+or&nbsp;a&nbsp;set&nbsp;of&nbsp;process&nbsp;ids.</tt></dd></dl>
+
+<dl><dt><a name="ClientLookup-work"><strong>work</strong></a>(self)</dt><dd><tt>Waste&nbsp;some&nbsp;random&nbsp;amount&nbsp;of&nbsp;time.<br>
+&nbsp;<br>
+This&nbsp;suspends&nbsp;execution&nbsp;of&nbsp;the&nbsp;process&nbsp;for&nbsp;a&nbsp;period&nbsp;of&nbsp;0-2&nbsp;seconds.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><a name="ClientLookup-get_config"><strong>get_config</strong></a>(key, default=None)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Returns&nbsp;the&nbsp;configuration&nbsp;value&nbsp;for&nbsp;specified&nbsp;'key'.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><strong>AckCommands</strong> = [&lt;Command.NewAck: 16&gt;, &lt;Command.EndAck: 15&gt;, &lt;Command.StartAck: 11&gt;, &lt;Command.SetupAck: 12&gt;, &lt;Command.ResolveAck: 17&gt;, &lt;Command.RPCReply: 31&gt;]</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Node_">class <strong>Node_</strong></a>(<a href="da.sim.html#NodeProcess">da.sim.NodeProcess</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;base&nbsp;class&nbsp;for&nbsp;DistAlgo&nbsp;processes.<br>
+&nbsp;<br>
+Each&nbsp;instance&nbsp;of&nbsp;this&nbsp;class&nbsp;enbodies&nbsp;the&nbsp;runtime&nbsp;state&nbsp;and&nbsp;activities&nbsp;of&nbsp;a<br>
+DistAlgo&nbsp;process&nbsp;in&nbsp;a&nbsp;distributed&nbsp;system.&nbsp;Each&nbsp;process&nbsp;is&nbsp;uniquely<br>
+identified&nbsp;by&nbsp;a&nbsp;`ProcessId`&nbsp;object.&nbsp;Messages&nbsp;exchanged&nbsp;between&nbsp;DistAlgo<br>
+processes&nbsp;can&nbsp;be&nbsp;any&nbsp;picklable&nbsp;Python&nbsp;object.<br>
+&nbsp;<br>
+DistAlgo&nbsp;processes&nbsp;can&nbsp;spawn&nbsp;more&nbsp;processes&nbsp;by&nbsp;calling&nbsp;`new`.&nbsp;The&nbsp;process<br>
+that&nbsp;called&nbsp;`new`&nbsp;is&nbsp;known&nbsp;as&nbsp;the&nbsp;parent&nbsp;process&nbsp;of&nbsp;the&nbsp;newly&nbsp;spawned<br>
+processes.&nbsp;Any&nbsp;<a href="da.sim.html#DistProcess">DistProcess</a>&nbsp;can&nbsp;send&nbsp;messages&nbsp;to&nbsp;any&nbsp;other&nbsp;<a href="da.sim.html#DistProcess">DistProcess</a>,&nbsp;given<br>
+that&nbsp;it&nbsp;knows&nbsp;the&nbsp;`ProcessId`&nbsp;of&nbsp;the&nbsp;target&nbsp;process.&nbsp;However,&nbsp;only&nbsp;the<br>
+parent&nbsp;process&nbsp;can&nbsp;`end`&nbsp;a&nbsp;child&nbsp;process.&nbsp;The&nbsp;terminal&nbsp;is&nbsp;shared&nbsp;between&nbsp;all<br>
+processes&nbsp;spawned&nbsp;from&nbsp;that&nbsp;terminal,&nbsp;which&nbsp;includes&nbsp;the&nbsp;stdout,&nbsp;stdin,&nbsp;and<br>
+stderr&nbsp;streams.<br>
+&nbsp;<br>
+Concrete&nbsp;subclasses&nbsp;of&nbsp;`<a href="da.sim.html#DistProcess">DistProcess</a>`&nbsp;must&nbsp;define&nbsp;the&nbsp;methods:<br>
+&nbsp;<br>
+-&nbsp;`setup`:&nbsp;A&nbsp;function&nbsp;that&nbsp;initializes&nbsp;the&nbsp;process-local&nbsp;variables.<br>
+&nbsp;<br>
+-&nbsp;`run`:&nbsp;The&nbsp;entry&nbsp;point&nbsp;of&nbsp;the&nbsp;process.&nbsp;This&nbsp;function&nbsp;defines&nbsp;the<br>
+&nbsp;&nbsp;activities&nbsp;of&nbsp;the&nbsp;process.<br>
+&nbsp;<br>
+Users&nbsp;should&nbsp;not&nbsp;instantiate&nbsp;this&nbsp;class&nbsp;directly,&nbsp;process&nbsp;instances&nbsp;should<br>
+be&nbsp;created&nbsp;by&nbsp;calling&nbsp;`new`.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="main.html#Node_">Node_</a></dd>
+<dd><a href="da.sim.html#NodeProcess">da.sim.NodeProcess</a></dd>
+<dd><a href="da.sim.html#DistProcess">da.sim.DistProcess</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Node_-__init__"><strong>__init__</strong></a>(self, procimpl, props)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Node_-run"><strong>run</strong></a>(self)</dt><dd><tt>Entry&nbsp;point&nbsp;for&nbsp;the&nbsp;DistAlgo&nbsp;process.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;starting&nbsp;point&nbsp;of&nbsp;execution&nbsp;for&nbsp;user&nbsp;code.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="da.sim.html#NodeProcess">da.sim.NodeProcess</a>:<br>
+<dl><dt><a name="Node_-bootstrap"><strong>bootstrap</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="da.sim.html#NodeProcess">da.sim.NodeProcess</a>:<br>
+<dl><dt><strong>AckCommands</strong> = [&lt;Command.NewAck: 16&gt;, &lt;Command.EndAck: 15&gt;, &lt;Command.StartAck: 11&gt;, &lt;Command.SetupAck: 12&gt;, &lt;Command.ResolveAck: 17&gt;, &lt;Command.RPCReply: 31&gt;, &lt;Command.NodeAck: 18&gt;]</dl>
+
+<hr>
+Methods inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><a name="Node_-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Node_-__str__"><strong>__str__</strong></a> = __repr__(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Node_-debug"><strong>debug</strong></a>(self, *message, sep=' ')</dt><dd><tt>Prints&nbsp;debugging&nbsp;output&nbsp;to&nbsp;the&nbsp;process&nbsp;log.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;`output`&nbsp;except&nbsp;the&nbsp;message&nbsp;is&nbsp;logged&nbsp;at&nbsp;the<br>
+'USRDBG'&nbsp;level.</tt></dd></dl>
+
+<dl><dt><a name="Node_-end"><strong>end</strong></a>(self, target, exit_code=1)</dt><dd><tt>Terminate&nbsp;the&nbsp;child&nbsp;processes&nbsp;specified&nbsp;by&nbsp;`target`.<br>
+&nbsp;<br>
+`target`&nbsp;can&nbsp;be&nbsp;a&nbsp;process&nbsp;id&nbsp;or&nbsp;a&nbsp;set&nbsp;of&nbsp;process&nbsp;ids,&nbsp;all&nbsp;of&nbsp;which&nbsp;must<br>
+be&nbsp;a&nbsp;child&nbsp;process&nbsp;of&nbsp;this&nbsp;process.</tt></dd></dl>
+
+<dl><dt><a name="Node_-error"><strong>error</strong></a>(self, *message, sep=' ')</dt><dd><tt>Prints&nbsp;error&nbsp;message&nbsp;to&nbsp;the&nbsp;process&nbsp;log.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;`output`&nbsp;except&nbsp;the&nbsp;message&nbsp;is&nbsp;logged&nbsp;at&nbsp;the<br>
+'USRERR'&nbsp;level.</tt></dd></dl>
+
+<dl><dt><a name="Node_-exit"><strong>exit</strong></a>(self, code=0)</dt><dd><tt>Terminates&nbsp;the&nbsp;current&nbsp;process.<br>
+&nbsp;<br>
+`code`&nbsp;specifies&nbsp;the&nbsp;exit&nbsp;code.</tt></dd></dl>
+
+<dl><dt><a name="Node_-hanged"><strong>hanged</strong></a>(self)</dt><dd><tt>Hangs&nbsp;the&nbsp;current&nbsp;process.<br>
+&nbsp;<br>
+When&nbsp;a&nbsp;process&nbsp;enters&nbsp;the&nbsp;'hanged'&nbsp;state,&nbsp;its&nbsp;main&nbsp;logic&nbsp;and&nbsp;all&nbsp;message<br>
+handlers&nbsp;will&nbsp;no&nbsp;longer&nbsp;run.</tt></dd></dl>
+
+<dl><dt><a name="Node_-incr_logical_clock"><strong>incr_logical_clock</strong></a>(self)</dt><dd><tt>Increments&nbsp;the&nbsp;logical&nbsp;clock.<br>
+&nbsp;<br>
+For&nbsp;Lamport's&nbsp;clock,&nbsp;this&nbsp;increases&nbsp;the&nbsp;clock&nbsp;value&nbsp;by&nbsp;1.</tt></dd></dl>
+
+<dl><dt><a name="Node_-logical_clock"><strong>logical_clock</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;current&nbsp;value&nbsp;of&nbsp;the&nbsp;logical&nbsp;clock.</tt></dd></dl>
+
+<dl><dt><a name="Node_-nameof"><strong>nameof</strong></a>(self, pid)</dt><dd><tt>Returns&nbsp;the&nbsp;process&nbsp;name&nbsp;of&nbsp;`pid`,&nbsp;if&nbsp;any.</tt></dd></dl>
+
+<dl><dt><a name="Node_-new"><strong>new</strong></a>(self, pcls, args=None, num=None, at=None, method=None, **props)</dt><dd><tt>Creates&nbsp;new&nbsp;DistAlgo&nbsp;processes.<br>
+&nbsp;<br>
+`pcls`&nbsp;specifies&nbsp;the&nbsp;DistAlgo&nbsp;process&nbsp;class.&nbsp;Optional&nbsp;argument&nbsp;`args`&nbsp;is<br>
+a&nbsp;list&nbsp;of&nbsp;arguments&nbsp;that&nbsp;is&nbsp;used&nbsp;to&nbsp;call&nbsp;the&nbsp;`setup`&nbsp;method&nbsp;of&nbsp;the&nbsp;child<br>
+processes.&nbsp;Optional&nbsp;argument&nbsp;`num`&nbsp;specifies&nbsp;the&nbsp;number&nbsp;of&nbsp;processes&nbsp;to<br>
+create&nbsp;on&nbsp;each&nbsp;node.&nbsp;Optional&nbsp;argument&nbsp;`at`&nbsp;specifies&nbsp;the&nbsp;node&nbsp;or&nbsp;nodes<br>
+on&nbsp;which&nbsp;the&nbsp;new&nbsp;processes&nbsp;are&nbsp;to&nbsp;be&nbsp;created.&nbsp;If&nbsp;`num`&nbsp;is&nbsp;not&nbsp;specified<br>
+then&nbsp;it&nbsp;defaults&nbsp;to&nbsp;one&nbsp;process.&nbsp;If&nbsp;`at`&nbsp;is&nbsp;not&nbsp;specified&nbsp;then&nbsp;it<br>
+defaults&nbsp;to&nbsp;the&nbsp;same&nbsp;node&nbsp;as&nbsp;the&nbsp;current&nbsp;process.&nbsp;Optional&nbsp;argument<br>
+`method`&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;implementation&nbsp;used&nbsp;to&nbsp;run&nbsp;the&nbsp;new<br>
+process(es),&nbsp;and&nbsp;can&nbsp;be&nbsp;one&nbsp;of&nbsp;'process',&nbsp;in&nbsp;which&nbsp;case&nbsp;the&nbsp;new<br>
+processes&nbsp;will&nbsp;be&nbsp;run&nbsp;inside&nbsp;operating&nbsp;system&nbsp;processes,&nbsp;or&nbsp;'thread'&nbsp;in<br>
+which&nbsp;case&nbsp;the&nbsp;processes&nbsp;will&nbsp;be&nbsp;run&nbsp;inside&nbsp;operating&nbsp;system&nbsp;threads.&nbsp;If<br>
+method&nbsp;is&nbsp;not&nbsp;specified&nbsp;then&nbsp;its&nbsp;default&nbsp;value&nbsp;is&nbsp;taken&nbsp;from&nbsp;the<br>
+'--default_proc_impl'&nbsp;command&nbsp;line&nbsp;option.<br>
+&nbsp;<br>
+If&nbsp;neither&nbsp;`num`&nbsp;nor&nbsp;`at`&nbsp;is&nbsp;specified,&nbsp;then&nbsp;`new`&nbsp;will&nbsp;return&nbsp;the<br>
+process&nbsp;id&nbsp;of&nbsp;child&nbsp;process&nbsp;if&nbsp;successful,&nbsp;or&nbsp;None&nbsp;otherwise.&nbsp;If&nbsp;either<br>
+`num`&nbsp;or&nbsp;`at`&nbsp;is&nbsp;specified,&nbsp;then&nbsp;`new`&nbsp;will&nbsp;return&nbsp;a&nbsp;set&nbsp;containing&nbsp;the<br>
+process&nbsp;ids&nbsp;of&nbsp;the&nbsp;processes&nbsp;that&nbsp;was&nbsp;successfully&nbsp;created.</tt></dd></dl>
+
+<dl><dt><a name="Node_-nodeof"><strong>nodeof</strong></a>(self, pid)</dt><dd><tt>Returns&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;node&nbsp;process&nbsp;that's&nbsp;running&nbsp;`pid`.</tt></dd></dl>
+
+<dl><dt><a name="Node_-output"><strong>output</strong></a>(self, *message, sep=' ', level=21)</dt><dd><tt>Prints&nbsp;arguments&nbsp;to&nbsp;the&nbsp;process&nbsp;log.<br>
+&nbsp;<br>
+Optional&nbsp;argument&nbsp;'level'&nbsp;is&nbsp;a&nbsp;positive&nbsp;integer&nbsp;that&nbsp;specifies&nbsp;the<br>
+logging&nbsp;level&nbsp;of&nbsp;the&nbsp;message,&nbsp;defaults&nbsp;to&nbsp;'logging.INFO'(20).&nbsp;Refer&nbsp;to<br>
+[https://docs.python.org/3/library/logging.html#levels]&nbsp;for&nbsp;a&nbsp;list&nbsp;of<br>
+predefined&nbsp;logging&nbsp;levels.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;level&nbsp;of&nbsp;the&nbsp;message&nbsp;is&nbsp;equal&nbsp;to&nbsp;or&nbsp;higher&nbsp;than&nbsp;the<br>
+configured&nbsp;level&nbsp;of&nbsp;a&nbsp;log&nbsp;handler,&nbsp;the&nbsp;message&nbsp;is&nbsp;logged&nbsp;to&nbsp;that<br>
+handler;&nbsp;otherwise,&nbsp;it&nbsp;is&nbsp;ignored.&nbsp;DistAlgo&nbsp;processes&nbsp;are<br>
+automatically&nbsp;configured&nbsp;with&nbsp;two&nbsp;log&nbsp;handlers:,&nbsp;one&nbsp;logs&nbsp;to&nbsp;the<br>
+console,&nbsp;the&nbsp;other&nbsp;to&nbsp;a&nbsp;log&nbsp;file;&nbsp;the&nbsp;handlers'&nbsp;logging&nbsp;levels&nbsp;are<br>
+controlled&nbsp;by&nbsp;command&nbsp;line&nbsp;parameters.</tt></dd></dl>
+
+<dl><dt><a name="Node_-parent"><strong>parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;parent&nbsp;process&nbsp;id.<br>
+&nbsp;<br>
+The&nbsp;parent&nbsp;process&nbsp;is&nbsp;the&nbsp;process&nbsp;that&nbsp;called&nbsp;`new`&nbsp;to&nbsp;create&nbsp;this<br>
+process.</tt></dd></dl>
+
+<dl><dt><a name="Node_-resolve"><strong>resolve</strong></a>(self, name)</dt><dd><tt>Returns&nbsp;the&nbsp;process&nbsp;id&nbsp;associated&nbsp;with&nbsp;`name`.</tt></dd></dl>
+
+<dl><dt><a name="Node_-send"><strong>send</strong></a>(self, message, to, channel=None, **rest)</dt><dd><tt>Send&nbsp;a&nbsp;DistAlgo&nbsp;message.<br>
+&nbsp;<br>
+`message`&nbsp;can&nbsp;be&nbsp;any&nbsp;pickle-able&nbsp;Python&nbsp;object.&nbsp;`to`&nbsp;can&nbsp;be&nbsp;a&nbsp;process&nbsp;id<br>
+or&nbsp;a&nbsp;set&nbsp;of&nbsp;process&nbsp;ids.</tt></dd></dl>
+
+<dl><dt><a name="Node_-setup"><strong>setup</strong></a>(self, **rest)</dt><dd><tt>Initialization&nbsp;routine&nbsp;for&nbsp;the&nbsp;DistAlgo&nbsp;process.<br>
+&nbsp;<br>
+Should&nbsp;be&nbsp;overridden&nbsp;by&nbsp;child&nbsp;classes&nbsp;to&nbsp;initialize&nbsp;process&nbsp;states.</tt></dd></dl>
+
+<dl><dt><a name="Node_-work"><strong>work</strong></a>(self)</dt><dd><tt>Waste&nbsp;some&nbsp;random&nbsp;amount&nbsp;of&nbsp;time.<br>
+&nbsp;<br>
+This&nbsp;suspends&nbsp;execution&nbsp;of&nbsp;the&nbsp;process&nbsp;for&nbsp;a&nbsp;period&nbsp;of&nbsp;0-2&nbsp;seconds.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><a name="Node_-get_config"><strong>get_config</strong></a>(key, default=None)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Returns&nbsp;the&nbsp;configuration&nbsp;value&nbsp;for&nbsp;specified&nbsp;'key'.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="da.sim.html#DistProcess">da.sim.DistProcess</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-sqrt"><strong>sqrt</strong></a>(...)</dt><dd><tt><a href="#-sqrt">sqrt</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;square&nbsp;root&nbsp;of&nbsp;x.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>PatternExpr_1028</strong> = (='LookupCompleted',_)<br>
+<strong>PatternExpr_1050</strong> = (='LookupCompleted',t)<br>
+<strong>PatternExpr_273</strong> = (='totalHops',src,dst,numHops,tDist)<br>
+<strong>PatternExpr_399</strong> = (='randomNodeList',objList)<br>
+<strong>PatternExpr_406</strong> = X<br>
+<strong>PatternExpr_457</strong> = (='LookupCompleted',_)<br>
+<strong>PatternExpr_479</strong> = (='LookupCompleted',t)<br>
+<strong>PatternExpr_894</strong> = ='JoinCompleted'<br>
+<strong>PatternExpr_898</strong> = p<br>
+<strong>PatternExpr_962</strong> = (='randomNodeList',objs)<br>
+<strong>PatternExpr_969</strong> = X</td></tr></table>
+</body></html>
